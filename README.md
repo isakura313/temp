@@ -1,0 +1,1 @@
+just a simple bash script, that's create a simple web project
