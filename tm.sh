@@ -38,12 +38,12 @@ gulp.task('browser-sync', function() { // Создаем таск browser-sync
 });
 
 
-gulp.task('css-libs', ['sass'], function() {
-	return gulp.src('app/css/libs.css') // Выбираем файл для минификации
-		.pipe(cssnano()) // Сжимаем
-		.pipe(rename({suffix: '.min'})) // Добавляем суффикс .min
-		.pipe(gulp.dest('app/css')); // Выгружаем в папку app/css
-});
+// gulp.task('css-libs', ['sass'], function() {
+// 	return gulp.src('app/css/libs.css') // Выбираем файл для минификации
+// 		.pipe(cssnano()) // Сжимаем
+// 		.pipe(rename({suffix: '.min'})) // Добавляем суффикс .min
+// 		.pipe(gulp.dest('app/css')); // Выгружаем в папку app/css
+// });
 
 gulp.task('watch', ['browser-sync'], function() {
 	gulp.watch('app/sass/**/*.sass', ['sass']); // Наблюдение за sass файлами в папке sass
@@ -69,7 +69,7 @@ gulp.task('img', function() {
 gulp.task('build', 'sass' ['clean'], function() {
 
 	var buildCss = gulp.src([ // Переносим библиотеки в продакшен
-		'app/css/*.css'
+		'app/css/master.css'
 		])
 	.pipe(gulp.dest('dist/css'))
 
@@ -141,7 +141,53 @@ mkdir base
 cd base
 touch _base.sass
 touch _mixins.sass
-touch _norm.sass
+echo "// http://meyerweb.com/eric/tools/css/reset/
+//  v2.0 | 20110126
+//  License: none (public domain)
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video 
+    margin: 0
+    padding: 0
+    border: 0
+    font-size: 100%
+    font: inherit
+    vertical-align: baseline
+
+// HTML5 display-role reset for older browsers
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section 
+    display: block
+
+body 
+    line-height: 1
+
+ol, ul 
+    list-style: none
+
+blockquote, q 
+    quotes: none
+
+blockquote:before, blockquote:after
+q:before, q:after 
+    content: ''
+    content: none
+
+table 
+    border-collapse: collapse
+    border-spacing: 0
+">_norm.sass
 touch _var.sass
 cd ../
 mkdir layouts
@@ -163,5 +209,6 @@ git init
 git add --all
 git commit -m "first commit"
 git remote add origin https://github.com/isakura313/$dir_name.git
+
 code .
 gulp

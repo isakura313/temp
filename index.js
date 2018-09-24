@@ -1,10 +1,4 @@
-#!/bin/bash
-#думаю добавить гит.....
-echo Hello what the name of directory
-read dir_name
-mkdir $dir_name
-cd $dir_name
-echo "var gulp = require('gulp');
+var gulp = require('gulp');
     sass         = require('gulp-sass'), //Подключаем Sass пакет,
     browserSync  = require('browser-sync'), // Подключаем Browser Sync
     concat       = require('gulp-concat'), // Подключаем gulp-concat (для конкатенации файлов)
@@ -91,77 +85,4 @@ gulp.task('clear', function (callback) {
 	return cache.clearAll();
 })
 
-gulp.task('default', ['watch']);"> gulpfile.js
-echo "Создано из шаблона"> README.md
-npm init -y
-npm i -D gulp browser-sync gulp-sass gulp-sass gulp-concat gulp-uglifyjs gulp-cssnano gulp-rename del gulp-imagemin imagemin-pngquant gulp-cache gulp-autoprefixer gulp-notify
-mkdir app
-cd app
-echo "<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="web">
-    <meta name="keywords" content="web">
-    <meta name="author" content="Yakupov">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/index.js"></script>
-    <title></title>
-    <link rel="icon"  type="image/png" href="img/favicon.png">
-</head>
-<body>
-<h1> Hello</h1>
-
-
-
-
-</body>
-</html>"> index.html
-mkdir img
-mkdir js
-cd js
-touch main.js
-cd ../
-mkdir sass
-cd sass
-echo "@import 'base/_base.sass'
-@import 'base/_mixins.sass'
-@import 'base/_var.sass'
-@import 'base/_norm.sass'
-
-@import 'layouts/_fonts.sass'
-@import 'layouts/_buttons.sass'
-@import 'layouts/_header.sass'
-@import 'layouts/_main.sass'
-@import 'layouts/_mobile.sass'
-"> style.sass
-mkdir base
-cd base
-touch _base.sass
-touch _mixins.sass
-touch _norm.sass
-touch _var.sass
-cd ../
-mkdir layouts
-cd layouts
-touch _header.sass
-touch _main.sass
-touch _mobile.sass
-touch _buttons.sass
-mkdir _fonts.sass
-cd ../
-cd ../
-mkdir css
-cd css
-touch style.css
-cd ../
-cd ../
-echo "/node_modules/">.gitignore
-git init
-git add --all
-git commit -m "first commit"
-git remote add origin https://github.com/isakura313/$dir_name.git
-code .
-gulp
+gulp.task('default', ['watch']);
