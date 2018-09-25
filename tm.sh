@@ -16,15 +16,14 @@ echo "var gulp = require('gulp');
     pngquant     = require('imagemin-pngquant'), // Подключаем библиотеку для работы с png
     cache        = require('gulp-cache'), // Подключаем библиотеку кеширования
     autoprefixer = require('gulp-autoprefixer');// Подключаем библиотеку для автоматического добавления префиксов
-    notify        = require('gulp-notify');
+    // notify        = require('gulp-notify');
 
 
 gulp.task('sass', function(){
     return gulp.src('app/sass/**/*.sass') // Берем источник
-		.pipe(sass({outputStyle: 'expand'}).on(error, notify.onError()))
-		.pipe(sass()) // Преобразуем Sass в CSS посредством gulp-sass
+		.pipe(sass({errLogToConsole: true})) // Преобразуем Sass в CSS посредством gulp-sass
 		.pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true })) // Создаем префиксы
-		.pipe(gulp.dest('app/css')) // Выгружаем результатыа в папку app/css
+		.pipe(gulp.dest('app/css')) // Выгружаем результата в папку app/css
 		.pipe(browserSync.reload({stream: true})); // Обновляем CSS на странице при изменении
 });
     
@@ -33,7 +32,6 @@ gulp.task('browser-sync', function() { // Создаем таск browser-sync
 		server: { // Определяем параметры сервера
 			baseDir: 'app' // Директория для сервера - app
 		},
-		notify: false // Отключаем уведомления
 	});
 });
 
@@ -91,10 +89,11 @@ gulp.task('clear', function (callback) {
 	return cache.clearAll();
 })
 
-gulp.task('default', ['watch']);"> gulpfile.js
+gulp.task('default', ['watch']);">gulpfile.js
+
 echo "Создано из шаблона"> README.md
 npm init -y
-npm i -D gulp browser-sync gulp-sass gulp-sass gulp-concat gulp-uglifyjs gulp-cssnano gulp-rename del gulp-imagemin imagemin-pngquant gulp-cache gulp-autoprefixer gulp-notify
+npm install gulp browser-sync gulp-sass gulp-sass gulp-concat gulp-uglifyjs gulp-cssnano gulp-rename del gulp-imagemin imagemin-pngquant gulp-cache gulp-autoprefixer gulp-notify --save-devs
 mkdir app
 cd app
 echo "<!DOCTYPE html>
@@ -131,7 +130,6 @@ echo "@import 'base/_base.sass'
 @import 'base/_var.sass'
 @import 'base/_norm.sass'
 
-@import 'layouts/_fonts.sass'
 @import 'layouts/_buttons.sass'
 @import 'layouts/_header.sass'
 @import 'layouts/_main.sass'
@@ -209,6 +207,6 @@ git init
 git add --all
 git commit -m "first commit"
 git remote add origin https://github.com/isakura313/$dir_name.git
-
+cd app
 code .
 gulp
